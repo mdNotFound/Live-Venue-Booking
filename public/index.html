@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Bookings Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fallback styles in case CSS file doesn't load -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .bookings-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .booking-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .bookings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+        }
+        .clear-button {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .clear-button:hover {
+            background-color: #e84118;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ Live Venue Bookings</h1>
+            <div class="status-indicator">
+                <span class="status-dot" id="connectionStatus"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="bookings-header">
+                <div class="header-left">
+                    <h2>Recent Bookings</h2>
+                    <div class="booking-count">
+                        Total: <span id="bookingCount">0</span>
+                    </div>
+                </div>
+                <button class="clear-button" id="clearAllBtn">
+                    🗑️ Clear All Bookings
+                </button>
+            </div>
+
+            <!-- Scrollable container for bookings -->
+            <div class="bookings-container" id="bookingsContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading bookings...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
